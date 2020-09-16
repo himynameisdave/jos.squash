@@ -1,8 +1,12 @@
 import db from './supabase.js';
 import express from 'express';
+import bodyParser from 'body-parser';
 import asyncHandler from 'express-async-handler';
 
 const app = express();
+//  Able to parse JSON, for post requests
+app.use(bodyParser.json());
+
 
 //  TODO: move somewhere, like constants
 const PORT = 6969;
@@ -49,6 +53,43 @@ app.put('/hits', asyncHandler(async (req, res, next) => {
   return next();
 }));
 
+// GET /guestbook
+app.get('/guestbook', asyncHandler(async (req, res, next) => {
+  //  Get the data from the DB
+  const { body: entries } = await db
+    .from('guestbook')
+    .select('*');
+  //  Send the response
+  res.send({ entries });
+}));
+
+
+//  POST /guestbook
+app.post('/guestbook', asyncHandler(async (req, res, next) => {
+  const { name, text } = req.body;
+  if (!name) {
+    return res.send({
+      error: `🙅‍♀️ Bad request! No name provided!`,
+      code: 400,
+    });
+  }
+  if (!text) {
+    return res.send({
+      error: `🙅‍♀️ Bad request! No text provided!`,
+      code: 400,
+    });
+  }
+  await db
+    .from('guestbook')
+    .insert([
+      {
+        name,
+        text,
+        created_at: new Date(),
+      }
+    ]);
+  res.sendStatus(200);
+}));
 
 app.listen(PORT, () => {
   console.log(`🍕 Come get some pizza at http://localhost:6969`)
