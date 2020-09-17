@@ -6,19 +6,23 @@
   "type": "module",
   "scripts": {
     "server": "node --experimental-json-modules server/index.js",
-    "start": "rollup"
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
+    "start": "sirv public --port 6969"
   },
   "dependencies": {
     "@supabase/supabase-js": "^0.36.5",
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
     "express-async-handler": "^1.1.4",
+    "sirv-cli": "^1.0.6",
     "svelte": "^3.25.1"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^15.0.0",
     "@rollup/plugin-node-resolve": "^9.0.0",
     "dotenv": "^8.2.0",
+    "npm-run-all": "^4.1.5",
     "rollup": "^2.26.11",
     "rollup-plugin-livereload": "^2.0.0",
     "rollup-plugin-svelte": "^6.0.1",
