@@ -62,6 +62,8 @@
   .dollz {
     position: relative;
     width: 100%;
+    margin: 0 auto;
+    max-width: 400px;
   }
 
   .img__bday {
