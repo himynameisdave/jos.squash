@@ -1,6 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import asyncHandler from 'express-async-handler';
+import serverless from 'serverless-http'; 
 
 import db from './supabase.js';
 import publicPath from './public-path.js';
@@ -85,3 +86,6 @@ app.post('/api/guestbook', asyncHandler(async (req, res, next) => {
 app.listen(process.env.PORT || PORT, () => {
   console.log(`🍕 Come get some pizza at http://localhost:6969/`)
 });
+
+// module.exports.handler = serverless(app);
+export const handler = serverless(app);
