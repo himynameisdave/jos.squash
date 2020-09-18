@@ -1,15 +1,17 @@
-import db from './supabase.js';
 import express from 'express';
 import bodyParser from 'body-parser';
 import asyncHandler from 'express-async-handler';
 
+import db from './supabase.js';
+import publicPath from './public-path.js';
+import { PORT } from './constants.js'
+
 const app = express();
 //  Able to parse JSON, for post requests
 app.use(bodyParser.json());
+//  Serve the public folder
+app.use('/', express.static(publicPath))
 
-
-//  TODO: move somewhere, like constants
-const PORT = 6969;
 
 //  TODO: move this somewhere, perhaps ./supabase.js
 async function getHitsCount() {
@@ -20,19 +22,8 @@ async function getHitsCount() {
   return hitsCount;
 }
 
-// //  For testing purposes
-app.get('/', (req, res, next) => {
-  res.json({
-    message: '🍕 Welcome to annelisa.pizza! Here are some routes you can hit!',
-    routes: {
-      hits: '/hits',
-    },
-  });
-  return next();
-});
-
 //  GET /hits
-app.get('/hits', asyncHandler(async (req, res, next) => {
+app.get('/api/hits', asyncHandler(async (req, res, next) => {
   //  Get the data from the DB
   const hitsCount = await getHitsCount();
   //  Send the response
@@ -40,7 +31,7 @@ app.get('/hits', asyncHandler(async (req, res, next) => {
 }));
 
 //  PUT /hits
-app.put('/hits', asyncHandler(async (req, res, next) => {
+app.put('/api/hits', asyncHandler(async (req, res, next) => {
   const hitsCount = await getHitsCount();
   const { body } = await db
     .from('hits')
@@ -54,7 +45,7 @@ app.put('/hits', asyncHandler(async (req, res, next) => {
 }));
 
 // GET /guestbook
-app.get('/guestbook', asyncHandler(async (req, res, next) => {
+app.get('/api/guestbook', asyncHandler(async (req, res, next) => {
   //  Get the data from the DB
   const { body: entries } = await db
     .from('guestbook')
@@ -65,7 +56,7 @@ app.get('/guestbook', asyncHandler(async (req, res, next) => {
 
 
 //  POST /guestbook
-app.post('/guestbook', asyncHandler(async (req, res, next) => {
+app.post('/api/guestbook', asyncHandler(async (req, res, next) => {
   const { name, text } = req.body;
   if (!name) {
     return res.send({
@@ -91,6 +82,6 @@ app.post('/guestbook', asyncHandler(async (req, res, next) => {
   res.sendStatus(200);
 }));
 
-app.listen(PORT, () => {
-  console.log(`🍕 Come get some pizza at http://localhost:6969`)
+app.listen(process.env.PORT || PORT, () => {
+  console.log(`🍕 Come get some pizza at http://localhost:6969/`)
 });
