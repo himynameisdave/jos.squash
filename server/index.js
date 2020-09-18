@@ -1,17 +1,22 @@
-import express from 'express';
-import bodyParser from 'body-parser';
-import asyncHandler from 'express-async-handler';
-import serverless from 'serverless-http'; 
+const path = require('path');
+const express = require('express');
+const bodyParser = require('body-parser');
+const asyncHandler = require('express-async-handler');
+const serverless = require('serverless-http');
 
-import db from './supabase.js';
-import publicPath from './public-path.js';
-import { PORT } from './constants.js'
+const db = require('./supabase.js');
+// const publicPath = require('./public-path.js');
+const publicPath = path.resolve(__dirname, '../', 'public');
+
+// import { PORT } from './constants.js'
 
 const app = express();
+const router = express.Router();
+
 //  Able to parse JSON, for post requests
-app.use(bodyParser.json());
+// app.use(bodyParser.json());
 //  Serve the public folder
-app.use('/', express.static(publicPath))
+// app.use('/', express.static(publicPath))
 
 
 //  TODO: move this somewhere, perhaps ./supabase.js
@@ -24,7 +29,7 @@ async function getHitsCount() {
 }
 
 //  GET /hits
-app.get('/api/hits', asyncHandler(async (req, res, next) => {
+router.get('/api/hits', asyncHandler(async (req, res, next) => {
   //  Get the data from the DB
   const hitsCount = await getHitsCount();
   //  Send the response
@@ -32,7 +37,7 @@ app.get('/api/hits', asyncHandler(async (req, res, next) => {
 }));
 
 //  PUT /hits
-app.put('/api/hits', asyncHandler(async (req, res, next) => {
+router.put('/api/hits', asyncHandler(async (req, res, next) => {
   const hitsCount = await getHitsCount();
   const { body } = await db
     .from('hits')
@@ -46,7 +51,7 @@ app.put('/api/hits', asyncHandler(async (req, res, next) => {
 }));
 
 // GET /guestbook
-app.get('/api/guestbook', asyncHandler(async (req, res, next) => {
+router.get('/api/guestbook', asyncHandler(async (req, res, next) => {
   //  Get the data from the DB
   const { body: entries } = await db
     .from('guestbook')
@@ -57,7 +62,7 @@ app.get('/api/guestbook', asyncHandler(async (req, res, next) => {
 
 
 //  POST /guestbook
-app.post('/api/guestbook', asyncHandler(async (req, res, next) => {
+router.post('/api/guestbook', asyncHandler(async (req, res, next) => {
   const { name, text } = req.body;
   if (!name) {
     return res.send({
@@ -83,9 +88,14 @@ app.post('/api/guestbook', asyncHandler(async (req, res, next) => {
   res.sendStatus(200);
 }));
 
-app.listen(process.env.PORT || PORT, () => {
-  console.log(`🍕 Come get some pizza at http://localhost:6969/`)
-});
+app.use(bodyParser.json());
+app.use('/.netlify/functions/server', router);  // path must route to lambda
+app.use('/', express.static(publicPath))
 
-// module.exports.handler = serverless(app);
-export const handler = serverless(app);
+// app.listen(process.env.PORT || PORT, () => {
+//   console.log(`🍕 Come get some pizza at http://localhost:6969/`)
+// });
+
+module.exports.handler = serverless(app);
+
+module.exports = app;

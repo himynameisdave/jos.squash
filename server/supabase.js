@@ -1,10 +1,8 @@
-import setupEnv from './env.js';
-import supabase from '@supabase/supabase-js';
+require('./env.js');
+const supabase = require('@supabase/supabase-js');
 const { createClient } = supabase;
-//  Setup the env
-setupEnv();
 
-export default createClient(
+module.exports = createClient(
   process.env.API_URL,
   process.env.SUPABASE_KEY
 );

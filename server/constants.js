@@ -1,1 +1,1 @@
-export const PORT = 6969;
+module.exports.PORT = 6969;
