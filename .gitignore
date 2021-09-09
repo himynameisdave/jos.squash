@@ -2,3 +2,7 @@
 .env
 /node_modules/
 /public/build/
+__OLD__/
+
+# Local Netlify folder
+.netlify

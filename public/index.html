@@ -1,16 +1,86 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍕</text></svg>" />
-    <meta charset='utf-8'>
-    <meta name='viewport' content='width=device-width,initial-scale=1'>
-
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>annelisa.pizza</title>
-    <link rel='stylesheet' href='/global.css'>
-    <link rel='stylesheet' href='/build/bundle.css'>
-    <script defer src='/build/bundle.js'></script>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
   </head>
   <body>
-    <noscript>y u no have javascript enabled? fool!</noscript>
+    <h1>fetch</h1>
+
+    <div id="guestbook"></div>
+    <div>
+      <input type="text" id="name" placeholder="Your Name" />
+      <textarea id="message" placeholder="Your Message"></textarea>
+      <button type="submit" id="submit">
+        Send
+      </button>
+      <div id="error"></div>
+    </div>
+
+    <div id="hitcounter">
+
+    </div>
+
+    <script>
+      async function fetchGuestbookEntries() {
+        const $guestbook = document.getElementById('guestbook');
+        const response = await fetch('/.netlify/functions/guestbook').then(res => res.json());
+
+        if (response) {
+          $guestbook.innerText = '';
+
+          response.forEach(entry => {
+            const el = document.createElement('div');
+            el.innerText = entry.message;
+            $guestbook.appendChild(el);
+          });
+        } else {
+          $guestbook.innerText = 'Failed to load guestbook!'
+        }
+      }
+
+      async function handleFormSubmit() {
+        const $name = document.getElementById('name');
+        const $message = document.getElementById('message');
+
+        try {
+          await fetch('/.netlify/functions/guestbook', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              name: $name.value,
+              message: $message.value,
+            })
+          }).then(res => res.json());
+          //  Clear values
+          $name.value = '';
+          $message.value = '';
+          //  Refetch guestbook entries
+          fetchGuestbookEntries();
+        } catch (error) {
+          const $error = document.getElementById('error');
+          $error.innerText = 'Error posting, please try again!';
+        }
+      }
+
+      async function fetchHitCounter() {
+        const $hitcounter = document.getElementById('hitcounter');
+        const { count } = await fetch('/.netlify/functions/hitcounter').then(res => res.json());
+        $hitcounter.innerText = count;
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        fetchHitCounter();
+        fetchGuestbookEntries();
+        document.getElementById('submit').addEventListener('click', handleFormSubmit);
+      });
+    </script>
+    <script src="" async defer></script>
   </body>
 </html>
