@@ -2,14 +2,16 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>annelisa.pizza</title>
-    <meta name="description" content="">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍕</text></svg>">
+    <meta name="description" content="Happy Birthday Annelisa!">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="">
+
+    <link rel="stylesheet" href="/global.css">
+    <link rel="stylesheet" href="/bundle.css">
   </head>
   <body>
-    <h1>fetch</h1>
+    <!-- <h1>fetch</h1>
 
     <div id="guestbook"></div>
     <div>
@@ -21,11 +23,9 @@
       <div id="error"></div>
     </div>
 
-    <div id="hitcounter">
+    <div id="hitcounter"></div> -->
 
-    </div>
-
-    <script>
+    <!-- <script>
       async function fetchGuestbookEntries() {
         const $guestbook = document.getElementById('guestbook');
         const response = await fetch('/.netlify/functions/guestbook').then(res => res.json());
@@ -80,7 +80,7 @@
         fetchGuestbookEntries();
         document.getElementById('submit').addEventListener('click', handleFormSubmit);
       });
-    </script>
-    <script src="" async defer></script>
+    </script> -->
+    <script src="/bundle.js" async defer></script>
   </body>
 </html>
