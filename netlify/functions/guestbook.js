@@ -20,6 +20,7 @@ exports.handler = async function(event, context) {
     await supabase.from('guestbook').insert([
       { name, message }
     ]);
+
     return {
       statusCode: 201,
       body: JSON.stringify({
