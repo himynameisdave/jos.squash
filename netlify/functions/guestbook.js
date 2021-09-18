@@ -17,14 +17,15 @@ exports.handler = async function(event, context) {
       };
     }
     const { name, message } = body;
-    await supabase.from('guestbook').insert([
+    const response = await supabase.from('guestbook').insert([
       { name, message }
     ]);
-
+    const entry = response.data[0] || null;
     return {
-      statusCode: 201,
+      statusCode: response.status,
       body: JSON.stringify({
         message: 'Created entry!',
+        entry,
       }),
     };
   }

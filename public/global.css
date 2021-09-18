@@ -1,4 +1,11 @@
+* {
+  box-sizing: border-box;
+}
+
 html,
 body {
   background: #fff;
+  font-family: "Comic Sans MS", "Comic Sans", "Courier New", Courier, monospace;
+  font-size: 18px;
+  line-height: 1.6181;
 }
