@@ -34,7 +34,7 @@ export default {
     sourcemap: true,
     format: 'iife',
     name: 'annelisapizza',
-    file: 'public/bundle.js'
+    file: 'public/build/bundle.js'
   },
   plugins: [
     svelte({

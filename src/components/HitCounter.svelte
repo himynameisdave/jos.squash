@@ -23,10 +23,26 @@
 </script>
 
 <style>
+  @keyframes text-change {
+    0% {
+      color: violet;
+    }
+    50% {
+      color: yellow;
+    }
+    100% {
+      color: violet;
+    }
+  }
 
   h3 {
     font-family: "Comic Sans MS", "Comic Sans", "Courier New", Courier, monospace;
+    color: #fff;
+    text-shadow: 0 0 10px brown;
     text-align: center;
+    animation-name: text-change;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
   }
 
   .wrap {

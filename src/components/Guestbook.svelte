@@ -30,7 +30,7 @@
   .guestbook__image {
     display: block;
     margin: 0 auto;
-    width: 80%;
+    width: 100%;
   }
 
   .guestbook__sign {
@@ -50,7 +50,7 @@
     font-family: "Comic Sans MS", "Comic Sans", "Courier New", Courier, monospace;
     font-size: 1.5rem;
     padding: 0 20px;
-    transition: background-color 0.3s ease-in;
+    transition: background-color 0.75s ease-in;
   }
 
   .guestbook__sign button:disabled {
@@ -85,7 +85,7 @@
     display: block;
     font-style: italic;
     text-shadow: 0 0 5px lime;
-    margin: 0 auto 30px;
+    margin: 10px auto 20px;
     text-align: center;
   }
 
@@ -116,7 +116,7 @@
     <div class="guestbook__sign">
       <div class="guestbook__sign__contents">
         <input type="text" bind:value={name} placeholder="Your name" />
-        <textarea bind:value={message} placeholder="Happy Birthday "></textarea>
+        <textarea bind:value={message} placeholder="Happy Birthday Annelisa!"></textarea>
       </div>
       <button on:click={handleSubmit} disabled={!(name.length && message.length) || isPosting}>
         {#if isPosting}
@@ -137,7 +137,15 @@
         <b>{entry.name}</b> says:
       </div>
       <div class="guestbook__entry__message">
-        "{entry.message}"
+        {#if entry.message.split('\n').length > 1}
+          {#each entry.message.split('\n') as chunk, index}
+            <div>
+              {#if index === 0}"{/if}{chunk}{#if index === entry.message.split('\n').length - 1}"{/if}
+            </div>
+          {/each}
+        {:else}
+          "{entry.message}"
+        {/if}
       </div>
     </div>
   {/each}
