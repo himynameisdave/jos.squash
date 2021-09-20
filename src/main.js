@@ -1,5 +1,7 @@
 import App from './App.svelte';
 
-const app = new App({ target: document.body });
+const target = document.getElementById('root');
+
+const app = new App({ target });
 
 export default app;
