@@ -40,18 +40,15 @@
     position: relative;
   }
 
-  .dollz h2 {
+  .dollz .thirty-flames {
     animation-name: fade-in;
-    animation-duration: 3s;
+    animation-duration: 5s;
     animation-iteration-count: 1;
-    color: #fff;
-    font-family: 'Times New Roman', Times, serif;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 100%;
-    text-shadow: 0 0 10px red;
   }
 
   .row {
@@ -63,6 +60,7 @@
   .row img {
     width: 150px;
   }
+
 </style>
 
 <h1>
@@ -72,7 +70,7 @@
 <div class="images">
   <div class="dollz">
     <img src="/images/annelisa-dollz.jpg" alt="annelisa-dollz" />
-    <h2>30, flirty and thriving!</h2>
+    <img class="thirty-flames" src="/images/flame-thirty.gif" alt="thirty-flirty-and-thriving" />
   </div>
   <div class="row">
     <img src="/images/cake-delivery.gif" alt="cake-delivery" />
