@@ -25,20 +25,26 @@
 <style>
   @keyframes text-change {
     0% {
-      color: violet;
+      color: #04265c;
+    }
+    25% {
+      color: #94c2e4;
     }
     50% {
-      color: yellow;
+      color: #84868c;
+    }
+    75% {
+      color: #94c2e4;
     }
     100% {
-      color: violet;
+      color: #04265c;
     }
   }
 
   h3 {
     font-family: "Comic Sans MS", "Comic Sans", "Courier New", Courier, monospace;
     color: #fff;
-    text-shadow: 0 0 10px brown;
+    text-shadow: 0 0 10px yellow;
     text-align: center;
     animation-name: text-change;
     animation-duration: 1s;
@@ -53,7 +59,7 @@
   .hitcounter {
     border: 3px dotted hotpink;
     align-items: center;
-    background: linear-gradient(to bottom, #feccb1 0%,#f17432 50%,#ea5507 51%,#fb955e 100%);
+    background: linear-gradient(to bottom, #94c2e4 0%,#0b2f69 50%,#04265c 51%,#84868c 100%);
     border-radius: 7px;
     display: flex;
     justify-content: center;

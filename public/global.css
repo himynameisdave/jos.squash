@@ -1,11 +1,17 @@
+@font-face {
+  font-family: 'Comic Sans';
+  src:  url('/fonts/ComicSans.woff2') format('woff2'),
+        url('/fonts/ComicSans.woff') format('woff');
+}
+
 * {
   box-sizing: border-box;
 }
 
 html,
 body {
-  background-color: hotpink;
-  font-family: "Comic Sans MS", "Comic Sans", "Courier New", Courier, monospace;
+  background-color: #04265c;
+  font-family: "Comic Sans", "Comic Sans MS", "Courier New", Courier, monospace;
   font-size: 18px;
   line-height: 1.6181;
   margin: 0;
@@ -13,12 +19,15 @@ body {
   min-height: 100vh;
   width: 100%;
   width: 100vw;
+  overflow-x: hidden;
+  max-width: 100vw;
 }
 
 body {
+  background-image: url('/images/background.gif');
   background-repeat: repeat;
   background-size: 150px;
-  overflow-x: hidden;
+
 }
 
 h1,

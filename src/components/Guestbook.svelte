@@ -21,21 +21,21 @@
 
 <style>
   .guestbook {
-    border: 10px double rebeccapurple;
+    border: 10px double #84868c;
     border-radius: 4px;
-    background: linear-gradient(lime, #00aacc);
+    background: linear-gradient(#94c2e4, #04265c);
     padding: 10px;
   }
 
   .guestbook__image {
     display: block;
-    margin: 0 auto;
+    margin: 10px auto 20px;
     width: 100%;
   }
 
   .guestbook__sign {
     display: flex;
-    border: 3px dashed hotpink;
+    border: 3px dashed lime;
     border-radius: 10px;
     margin: 0 auto 10px;
     width: 90%;
@@ -43,7 +43,7 @@
   }
 
   .guestbook__sign button {
-    background: green;
+    background: rgb(12, 147, 12);
     border: 0;
     color: #fff;
     cursor: pointer;
@@ -64,8 +64,8 @@
   .guestbook__sign__contents input {
     border: 0;
     display: block;
-    font-family: "Comic Sans MS", "Comic Sans", "Courier New", Courier, monospace;
-    font-size: 1.5rem;
+    font-family: "Comic Sans", "Comic Sans MS", "Courier New", Courier, monospace;
+    font-size: 1.4rem;
     padding: 5px;
     width: 100%;
   }
@@ -73,8 +73,8 @@
   .guestbook__sign__contents textarea {
     border: 0;
     display: block;
-    font-family: "Comic Sans MS", "Comic Sans", "Courier New", Courier, monospace;
-    font-size: 0.9rem;
+    font-family: "Comic Sans", "Comic Sans MS", "Courier New", Courier, monospace;
+    font-size: 0.85rem;
     min-height: 150px;
     resize: none;
     padding: 5px;
@@ -82,9 +82,10 @@
   }
 
   h3 {
+    color: #333;
     display: block;
     font-style: italic;
-    text-shadow: 0 0 5px lime;
+    text-shadow: 0 0 5px #94c2e4;
     margin: 10px auto 20px;
     text-align: center;
   }
@@ -108,7 +109,7 @@
 <div class="guestbook">
   <img
     class="guestbook__image"
-    src="./images/dollz-guestbook.gif"
+    src="./images/guestbook.gif"
     alt="sign the guestbook"
   />
 
@@ -116,7 +117,7 @@
     <div class="guestbook__sign">
       <div class="guestbook__sign__contents">
         <input type="text" bind:value={name} placeholder="Your name" />
-        <textarea bind:value={message} placeholder="Happy Birthday Annelisa!"></textarea>
+        <textarea bind:value={message} placeholder="Happy Birthday Jos!"></textarea>
       </div>
       <button on:click={handleSubmit} disabled={!(name.length && message.length) || isPosting}>
         {#if isPosting}
