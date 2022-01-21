@@ -147,7 +147,7 @@
       </div>
       <div class="guestbook__entry__message">
         {#if entry.uuid === PALOMA_MESSAGE_ID}
-          <img src="/images/paloma-butt.gif" class="paloma-butt" alt="Paloma, a dog, dragging her butt across the carpet." />
+          <img src="/images/paloma-butt.gif" class="paloma-butt" alt="Love you Jos!" />
         {:else}
           <!-- Break newlines for messages with newlines -->
            {#if entry.message.split('\n').length > 1}
