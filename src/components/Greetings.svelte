@@ -78,7 +78,6 @@
     animation-timing-function: cubic-bezier(.5,-0.51,.66,1.54);
     color: red;
     font-size: 80px;
-    font-family: "Comic Sans MS", cursive, sans-serif;
     text-align: center;
     position: relative;
     margin: 50px 0 0;

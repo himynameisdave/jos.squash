@@ -47,7 +47,6 @@
     border: 0;
     color: #fff;
     cursor: pointer;
-    font-family: "Comic Sans MS", "Comic Sans", "Courier New", Courier, monospace;
     font-size: 1.5rem;
     padding: 0 20px;
     transition: background-color 0.75s ease-in;

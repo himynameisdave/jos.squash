@@ -42,7 +42,6 @@
   }
 
   h3 {
-    font-family: "Comic Sans MS", "Comic Sans", "Courier New", Courier, monospace;
     color: #fff;
     text-shadow: 0 0 10px yellow;
     text-align: center;
