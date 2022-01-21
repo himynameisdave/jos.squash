@@ -17,6 +17,9 @@
     hasPosted = true;
   }
 
+  //  Handle special Paloma case:
+  const PALOMA_MESSAGE_ID = '2d6c416c-622b-4378-824e-36d181fde868';
+
 </script>
 
 <style>
@@ -104,6 +107,11 @@
     font-size: 14px;
     margin-bottom: 5px;
   }
+
+  img.paloma-butt {
+    display: block;
+    width: 100%;
+  }
 </style>
 
 <div class="guestbook">
@@ -138,15 +146,21 @@
         <b>{entry.name}</b> says:
       </div>
       <div class="guestbook__entry__message">
-        {#if entry.message.split('\n').length > 1}
-          {#each entry.message.split('\n') as chunk, index}
-            <div>
-              {#if index === 0}"{/if}{chunk}{#if index === entry.message.split('\n').length - 1}"{/if}
-            </div>
-          {/each}
+        {#if entry.uuid === PALOMA_MESSAGE_ID}
+          <img src="/images/paloma-butt.gif" class="paloma-butt" alt="Paloma, a dog, dragging her butt across the carpet." />
         {:else}
-          "{entry.message}"
+          <!-- Break newlines for messages with newlines -->
+           {#if entry.message.split('\n').length > 1}
+             {#each entry.message.split('\n') as chunk, index}
+               <div>
+                 {#if index === 0}"{/if}{chunk}{#if index === entry.message.split('\n').length - 1}"{/if}
+               </div>
+             {/each}
+           {:else}
+             "{entry.message}"
+           {/if}
         {/if}
+
       </div>
     </div>
   {/each}
