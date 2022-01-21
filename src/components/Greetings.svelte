@@ -35,6 +35,24 @@
     }
   }
 
+  @keyframes palomy {
+    0% {
+      transform: rotate(-5deg) scale(1);
+    }
+    25% {
+      transform: rotate(5deg) scale(1);
+    }
+    50% {
+      transform: rotate(-10deg) scale(1.5);
+    }
+    75% {
+      transform: rotate(10deg) scale(1);
+    }
+    100% {
+      transform: rotate(-5deg) scale(1);
+    }
+  }
+
   @keyframes speech-bubble {
     0% {
       transform: rotate(0) scale(1);
@@ -114,11 +132,26 @@
     z-index: 2;
   }
 
-  img.balloons {
-    display: block;
+  .balloons-paloma {
+    align-items: center;
+    display: flex;
+    justify-content: center;
     opacity: 0.9;
     margin: 0 auto;
-    width: 190px;
+    width: 100%;
+  }
+
+  img.balloons {
+    display: block;
+    width: 180px;
+  }
+  img.palomy {
+    display: block;
+    animation-name: palomy;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: cubic-bezier(1,0,0,1);
+    width: 260px;
   }
 
   .dollz .logo {
@@ -180,6 +213,15 @@
     animation-iteration-count: infinite;
     animation-duration: 2s;
     left: -20%;
+    z-index: 1;
+  }
+
+  .whitecaps-hbd__images img.crepeau {
+    left: 0;
+    animation-name: teibert;
+    animation-iteration-count: infinite;
+    animation-duration: 1.25s;
+    z-index: 0;
   }
   .whitecaps-hbd__images img.davies {
     animation-name: davies;
@@ -199,7 +241,10 @@
     <img class="fader" src="/images/beer-cheers.gif" alt="thirty-flirty-and-thriving" />
     <img class="logo" src="/images/whitecaps-logo-white.gif" alt="whitecapsFCHowWeLoveThee" />
   </div>
-  <img class="balloons" src="/images/balloons.gif" alt="balloons" />
+  <div class="balloons-paloma">
+    <img class="balloons" src="/images/balloons.gif" alt="balloons" />
+    <img class="palomy" src="/images/palomy.png" alt="palomy" />
+  </div>
   <div class="flags">
     <img src="/images/flag-sw.gif" alt="flag-sw" />
     <img src="/images/flag-ca.gif" alt="flag-canada" />
@@ -214,6 +259,7 @@
     <img class="puzzle" src="/images/team-puzzle.gif" alt="team-puzzle" />
     <div class="whitecaps-hbd__images">
       <img class="teibert" src="/images/teibert.gif" alt="teibert" />
+      <img class="crepeau" src="/images/crepeau.gif" alt="crepeau" />
       <img class="davies" src="/images/davies.gif" alt="davies" />
     </div>
   </div>

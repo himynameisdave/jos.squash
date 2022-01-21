@@ -53,6 +53,7 @@
   .wrap {
     margin: 0 auto 20px;
     max-width: 400px;
+    position: relative;
   }
 
   .hitcounter {

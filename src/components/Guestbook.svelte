@@ -25,6 +25,7 @@
     border-radius: 4px;
     background: linear-gradient(#94c2e4, #04265c);
     padding: 10px;
+    position: relative;
   }
 
   .guestbook__image {
